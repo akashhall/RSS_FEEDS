@@ -1,0 +1,15 @@
+header h1 {
+  margin-left: 375px;
+  color: white;
+}
+header {
+  background-color: black;
+  margin-top: -20px;
+}
+footer h1 {
+  margin-left: 375px;
+  color: white;
+}
+footer {
+  background-color: black
+}
