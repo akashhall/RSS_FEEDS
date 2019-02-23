@@ -16,10 +16,22 @@ class FeedPage extends React.Component {
   setUrl = (e) => {
     e.target.value !== '' ? this.setState({ [e.target.name]: e.target.value }) : null;
   }
+  componentWillMount() {
+    this.props.state.feed.url.length ? this.props.state.feed.url.filter((data) => {
+      if (data.selected) {
+        this.setState({ urlData: data })
+      }
+    }) : this.setState({ urlData: null })
+  }
 
   addUrl = () => {
-    this.input.value = ''
-    this.props.setFeedData(this.state.inputUrl);
+    const dublicate = false;
+    this.input.value = '';
+    this.props.state.feed && this.props.state.feed.url.forEach(element => {
+      element.url === this.state.inputUrl ? dublicate = true : null;
+    });
+    this.state.inputUrl !== '' && !dublicate && this.props.setFeedData(this.state.inputUrl);
+    this.state.inputUrl = '';
   }
   deleteUrl = (url) => {
     this.props.deleteFeedData(url)
@@ -30,7 +42,7 @@ class FeedPage extends React.Component {
   showURL = (data, index) => {
     return (
       <div key={index}>
-        <button className="url-button" onClick={() => this.selectedUrlActive(index)}> {data.url}</button> <button className="url-remove" onClick={() => { this.deleteUrl(index) }}> X</button>
+        <button className={!data.selected ? "url-button" : 'url-button-selected'} onClick={() => this.selectedUrlActive(index)}> {data.url}</button> <button className="url-remove" onClick={() => { this.deleteUrl(index) }}> X</button>
         <br />
       </div>
     )
@@ -53,7 +65,8 @@ class FeedPage extends React.Component {
           <div className="vl"></div>
           <input placeholder="enter url" ref={(input) => this.input = input} className="url-input" onBlur={this.setUrl} name='inputUrl' /> <button className="add-url" onClick={this.addUrl}> Add URL</button>
           <hr className="hr" />
-          {this.state.urlData && <div className="header">{this.state.urlData.url}</div>}
+          {this.state.urlData && <div className="header">{this.state.urlData.urlData &&
+            this.state.urlData.urlData.feed && this.state.urlData.urlData.feed.url ? this.state.urlData.urlData.feed.url : this.state.urlData.url}</div>}
           <div className="feed-itme-container">
             {this.state.urlData && this.state.urlData.urlData && this.state.urlData.urlData.items.length ?
               this.state.urlData.urlData.items.map((data, index) => { return <FeedItem key={index} FeedItemData={data} /> }) : <FeedItem FeedItemData={null} />}

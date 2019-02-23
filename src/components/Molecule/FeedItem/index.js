@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 // import './style.css';
 
 import './style.css';
@@ -14,9 +15,13 @@ class FeedItem extends React.Component {
         return (
             <React.Fragment>
                 {this.props.FeedItemData &&
-                    <div className="feed-item">
-                   <a> {this.props.FeedItemData.author} </a>
-                    </div>}
+                    <Link to='/feedItem'>
+                        <div className="feed-item">  
+                          <span> {this.props.FeedItemData.pubDate}</span>
+                          <span> {this.props.FeedItemData.title}</span>
+                          <span> {this.props.FeedItemData.author}</span>
+                        </div>
+                    </Link>}
             </React.Fragment>
         )
     }

@@ -2,11 +2,12 @@
 width : 70%;
 margin: 0 auto;
 border: 2px solid;
-height: 500px;
+height: 700px;
 }
 .vl {
     border-left: 4px solid;
-    height: 500px;
+    min-height: 700px;
+    height: auto;
     position: absolute;
     left: 30%;
   }
@@ -40,6 +41,15 @@ height: 500px;
       height: 45px;
       font-size: 16px;
   }
+  .url-button-selected {
+    margin: 10px;
+    width : 150px;
+    height: 45px;
+    font-size: 16px;
+    background: black;
+    color: white;
+}
+
   .url-remove {
     height: 43px;
     margin-left: -10px;
@@ -49,6 +59,8 @@ height: 500px;
     width: 69%;
   }
   .header {
-    font-size: 40px;
-    margin-left: 50%;
+    font-size: 30px;
+    margin-left: 30%;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }

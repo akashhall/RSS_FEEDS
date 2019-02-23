@@ -2,4 +2,13 @@
     height: auto;
     border: 1px solid;
     cursor: pointer;
+    margin-bottom: 5px
+}
+.feed-item > span{
+    /* width : 10%; */
+    display: block;
+}
+a {
+ text-decoration: none;
+ color: black   
 }
