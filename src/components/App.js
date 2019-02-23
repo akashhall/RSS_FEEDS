@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Switch, Route } from 'react-router-dom'
 import FEEDPage from './Pages/FeedPage'
+import FEEDItemPage from './Pages/FeedItemPage'
 import '../styles/App.css';
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
                 </header>
                 <Switch>
                     <Route exact path='/' component={FEEDPage} />
+                    <Route exact path='/FeedItem' component={FEEDItemPage} />
                 </Switch>
                 <footer>
                     <h1>REACT REDUX FEEDS  </h1>

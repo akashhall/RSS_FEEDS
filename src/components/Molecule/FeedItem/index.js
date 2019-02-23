@@ -1,6 +1,7 @@
 import React from 'react';
 // import './style.css';
 
+import './style.css';
 class FeedItem extends React.Component {
     constructor(props) {
         super(props);
@@ -8,17 +9,17 @@ class FeedItem extends React.Component {
             header: '',
             inputUrl: ''
         }
-        this.FeedItemData = props.FeedItemData ;
     }
-render() {
-    return (
-        <React.Fragment>
-            <div className="feed-item">
-                {this.FeedItemData.author}
-            </div>
-        </React.Fragment>
-    )
-}
+    render() {
+        return (
+            <React.Fragment>
+                {this.props.FeedItemData &&
+                    <div className="feed-item">
+                   <a> {this.props.FeedItemData.author} </a>
+                    </div>}
+            </React.Fragment>
+        )
+    }
 }
 
 export default FeedItem;

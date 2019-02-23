@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import FeedItem from './../../Molecule/FeedItem';
-import { setUrl, deleteUrl } from './action';
+import { setUrl, deleteUrl, selectedUrl } from './action';
 import './style.css';
 
 class FeedPage extends React.Component {
@@ -24,10 +24,13 @@ class FeedPage extends React.Component {
   deleteUrl = (url) => {
     this.props.deleteFeedData(url)
   }
+  selectedUrlActive = (index) => {
+    this.props.selectedUrlActive(index)
+  }
   showURL = (data, index) => {
     return (
       <div key={index}>
-        <button className="url-button"> {data.url}</button> <button className="url-remove" onClick={() => { this.deleteUrl(data.url) }}> X</button>
+        <button className="url-button" onClick={() => this.selectedUrlActive(index)}> {data.url}</button> <button className="url-remove" onClick={() => { this.deleteUrl(index) }}> X</button>
         <br />
       </div>
     )
@@ -35,10 +38,9 @@ class FeedPage extends React.Component {
   componentWillReceiveProps(nextProps) {
     nextProps.state.feed.url.length ? nextProps.state.feed.url.filter((data) => {
       if (data.selected) {
-        const d = data.urlData !== null && data.urlData;
-        this.setState({ header: data.url, urlData: d })
+        this.setState({ urlData: data })
       }
-    }) : this.setState({ header: '' })
+    }) : this.setState({ urlData: null })
   }
   render() {
     return (
@@ -51,10 +53,10 @@ class FeedPage extends React.Component {
           <div className="vl"></div>
           <input placeholder="enter url" ref={(input) => this.input = input} className="url-input" onBlur={this.setUrl} name='inputUrl' /> <button className="add-url" onClick={this.addUrl}> Add URL</button>
           <hr className="hr" />
-          <div className="header">{this.state.header}</div>
-          <div style={{ marginLeft: '30%' }}>
-            {this.state.urlData && this.state.urlData.items && this.state.urlData.items.length &&
-              this.state.urlData.items.map((data,index) => { return <FeedItem key={index} FeedItemData={data} /> })}
+          {this.state.urlData && <div className="header">{this.state.urlData.url}</div>}
+          <div className="feed-itme-container">
+            {this.state.urlData && this.state.urlData.urlData && this.state.urlData.urlData.items.length ?
+              this.state.urlData.urlData.items.map((data, index) => { return <FeedItem key={index} FeedItemData={data} /> }) : <FeedItem FeedItemData={null} />}
           </div>
         </div>
       </React.Fragment>
@@ -70,6 +72,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setFeedData: (value) => dispatch(setUrl(value)),
     deleteFeedData: (value) => dispatch(deleteUrl(value)),
+    selectedUrlActive: (value) => dispatch(selectedUrl(value))
   }
 }
 
