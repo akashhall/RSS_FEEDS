@@ -22,8 +22,8 @@ export function feedReducer(state = initialState, action) {
     }
     case DELETEURLCONST: {
       const newUrl = state.url.filter((obj, index) => {
-        if (index === action.payload) {
-          if (index === state.url.length-1 && index !== 0) {
+        if (index === action.payload && obj.selected === true) {
+          if (index <= state.url.length-1 && index !== 0) {
             state.url[index - 1].selected = true;
           } else if(index === 0) {
             if(state.url.length > 1)

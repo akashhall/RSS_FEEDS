@@ -1,0 +1,19 @@
+.feed-item-container > span{
+display: block;
+margin-bottom: 15px;
+margin-left: 10px;
+}
+.feed-item-container > img{
+      width: 500px;
+      height: 300px;
+      margin-left: 20px
+    }
+.feed-item-container {
+    border: 1px solid;
+}
+
+img{
+    width: 500px;
+    height: 300px;
+    margin-left: 20px
+  }

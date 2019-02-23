@@ -15,11 +15,11 @@ class FeedItem extends React.Component {
         return (
             <React.Fragment>
                 {this.props.FeedItemData &&
-                    <Link to='/feedItem'>
-                        <div className="feed-item">  
-                          <span> {this.props.FeedItemData.pubDate}</span>
-                          <span> {this.props.FeedItemData.title}</span>
-                          <span> {this.props.FeedItemData.author}</span>
+                    <Link to={{ pathname: '/feedItem', state: { FeedData: this.props.FeedItemData } }} >
+                        <div className="feed-item">
+                            <span> {this.props.FeedItemData.pubDate}</span>
+                            <span> {this.props.FeedItemData.title}</span>
+                            <span> {this.props.FeedItemData.author}</span>
                         </div>
                     </Link>}
             </React.Fragment>
