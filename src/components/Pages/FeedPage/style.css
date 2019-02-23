@@ -19,10 +19,16 @@ height: 500px;
   .url-input {
     position: absolute;
     margin: 10px;
-    width: 10%;
+    width: 8%;
     height: 4%;
     padding: 0px;
     font-size: 16px;
+  }
+  .add-url {
+    position: absolute;
+    margin-left: 125px;
+    margin-top: 10px;
+    height: 29px;
   }
   .url-container {
       position: absolute;
