@@ -6,5 +6,5 @@ clone or download repositry
 
 2) npm start
 
-3) :) Done
+3) :) Done localhost:8080 is ready for you !
 
